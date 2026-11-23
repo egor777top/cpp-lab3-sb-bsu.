@@ -1,4 +1,5 @@
 #include<iostream>
+#include<limits>
 using namespace std;
 int main()
 {
@@ -11,6 +12,12 @@ int main()
         do {
             cout << "Enter integer nr. " << i << ": ";
             cin >> number;
+            if (cin.fail()) {
+                cout << "Warning: input is not an integer. Please try again." << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                continue;
+            }
             sum_k += number; i++;
         } while (i <= k);
         cout << " The total sum of " << k << " integers is: " << sum_k;
